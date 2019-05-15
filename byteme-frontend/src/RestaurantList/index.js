@@ -4,10 +4,21 @@ class RestaurantList extends Component {
   constructor(){
     super();
     this.state = {
-      restaurantList: null,
-      cuisine: null 
+      cuisine: '',
+      restaurantList: [],
     }
   }
+
+
+
+  // componentDidMount() {
+  //   this.getRestaurants.then(data => {
+  //     this.setState({
+  //       restaurants: data
+  //     })
+  //   })
+  // }
+
 
 
   handleChange = (e) => {
@@ -15,43 +26,53 @@ class RestaurantList extends Component {
   }
 
 
-  handleSubmit = async (e) => {
-    e.preventDefault();
-  }
-
 
   handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(this.state);
 
     try {
-      const indexResponse = await fetch(`http://localhost:9000/restaurants/${this.state.cuisine}`, {
-        method: 'GET',
-        credentials: 'include',// on every request we have to send the cookie
-      })
-      const parsedResponse = await indexResponse.json();
-      console.log("login response: ", parsedResponse)
-      if(parsedResponse.data === 'request successful'){
-      }
+
+      console.log(this.state.cuisine + '  <-- SearchTerm');
+      this.getRestaurants()
+
     } catch (err) {
       console.log(err);
     }
   }
 
 
+
   getRestaurants = async () => {
     try {
-      // let searchTerm = userInput
-      // const response = await fetch(`http:localhost:9000/api/v1/restaurants`)
-      // const RestaurantList = await response.json();
-      // this.setState({
-      //   restaurantList: restaurant
-      // })
+
+      console.log("cuisine to search for: ", this.state.cuisine)
+
+      let searchTerm = {query: this.state.cuisine};
+      console.log('step 1 - get restaurants');
+
+      const response = await fetch('http://localhost:9000/api/v1/restaurants/search', {
+        method: 'POST',
+        credentials: 'include',
+        body: JSON.stringify(searchTerm),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      
+      console.log('here is the response: ')
+
+      console.log(response);
+
+      const restaurantList = await response.json()
+
+      console.log("here is the converted response: ", restaurantList);
+
     } catch(err) {
       console.log('There was an error below');
       console.log(err);
     }
   }
+
 
 
   render(){
@@ -62,6 +83,11 @@ class RestaurantList extends Component {
           Enter Cuisine Type:<br />
           <input type='text' name='cuisine' onChange={this.handleChange}/><br />
           <button type='submit'>Submit</button><br />
+          <ul>
+            <li>
+              {this.state.restaurantList}
+            </li>
+          </ul>
         </form>
       </div>
       )
@@ -70,6 +96,12 @@ class RestaurantList extends Component {
 
 export default RestaurantList;
 
-
-
+// {
+//   method: 'PUT',
+//   credentials: 'include',
+//   body: JSON.stringify(BODY),
+//   headers: {
+//     'Content-Type': 'application/json'
+//   }
+// }
 

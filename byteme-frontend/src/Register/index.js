@@ -27,6 +27,7 @@ class Register extends Component {
     e.preventDefault();
     console.log(this.state);
     try {
+      
       const registerResponse = await fetch('http://localhost:9000/api/v1/users', {
         method: 'POST',
         credentials: 'include',// on every request we have to send the cookie
@@ -35,6 +36,7 @@ class Register extends Component {
           'Content-Type': 'application/json'
         }
       })
+
       console.log(registerResponse);
       const parsedResponse = await registerResponse.json();
       console.log("Register response: ", parsedResponse)
