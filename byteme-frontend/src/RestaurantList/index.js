@@ -10,47 +10,29 @@ class RestaurantList extends Component {
   }
 
 
-
-  // componentDidMount() {
-  //   this.getRestaurants.then(data => {
-  //     this.setState({
-  //       restaurants: data
-  //     })
-  //   })
-  // }
-
-
-
   handleChange = (e) => {
     this.setState({[e.target.name]: e.target.value});
   }
-
 
 
   handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-
       console.log(this.state.cuisine + '  <-- SearchTerm');
       this.getRestaurants()
-
     } catch (err) {
       console.log(err);
     }
   }
 
 
-
   getRestaurants = async () => {
     try {
-
-      console.log("cuisine to search for: ", this.state.cuisine)
-
+      // console.log("cuisine to search for: ", this.state.cuisine)
       let searchTerm = {query: this.state.cuisine};
-      console.log('step 1 - get restaurants');
-
-      const response = await fetch('http://localhost:9000/api/v1/restaurants/search', {
+      // console.log('step 1 - get restaurants');
+      const response = await fetch(process.env.REACT_APP_BACKEND_URL + '/api/v1/restaurants/search', {
         method: 'POST',
         credentials: 'include',
         body: JSON.stringify(searchTerm),
@@ -58,15 +40,16 @@ class RestaurantList extends Component {
           'Content-Type': 'application/json'
         }
       })
-      
-      console.log('here is the response: ')
+      // console.log('here is the response: ')
+      // console.log(response);
+      const responseJson = await response.json()
+      console.log("here is the converted response: ", responseJson);
 
-      console.log(response);
-
-      const restaurantList = await response.json()
-
-      console.log("here is the converted response: ", restaurantList);
-
+      console.log(responseJson);
+      this.setState({
+        restaurantList: responseJson.data
+      })
+      console.log(this.state.restaurantList);
     } catch(err) {
       console.log('There was an error below');
       console.log(err);
@@ -76,6 +59,16 @@ class RestaurantList extends Component {
 
 
   render(){
+
+    const restaurantListItems = this.state.restaurantList.map((restaurant, i) => {
+      return (
+        <li key={i}>
+          <a href={restaurant.url}> Name: { restaurant.name }</a> <br />
+          Address: { restaurant.address } { restaurant.zipcode } <br />
+          Restaurant Id: { restaurant.restaurantId } <br /><br />
+        </li>
+        )
+    })
     return (
       <div>
         <h1>Restaurant Index</h1>
@@ -84,9 +77,7 @@ class RestaurantList extends Component {
           <input type='text' name='cuisine' onChange={this.handleChange}/><br />
           <button type='submit'>Submit</button><br />
           <ul>
-            <li>
-              {this.state.restaurantList}
-            </li>
+            { restaurantListItems }
           </ul>
         </form>
       </div>
