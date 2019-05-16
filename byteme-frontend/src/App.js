@@ -11,6 +11,7 @@ import RestaurantList from './RestaurantList';
 import Account from './Account'
 import RestaurantShow from './RestaurantShow'
 import Button from 'react-bootstrap/Button';
+import EditUser from './EditUser';
 
 
 class App extends Component {
@@ -34,7 +35,6 @@ class App extends Component {
 
     // console.log("set user info hit: ")
     // console.log(userData)
-
     // userData.username
 
     this.setState({
@@ -59,6 +59,7 @@ class App extends Component {
           <Route path="/login" render={ (props) => <Login {...props} setUserInfo={this.setUserInfo} /> } />
           <Route path="/index" component={ RestaurantList } />
           <Route path="/account" render={ (props) => <Account {...props} appState={this.state} setUserInfo={this.setUserInfo} /> } />
+          <Route path="/edit" render={ (props) => <EditUser {...props} setUserInfo={this.setUserInfo} appState={this.state} /> } />
           <Route path="/restaurantShow" component={ RestaurantShow } />
         </Switch>
       </main>
