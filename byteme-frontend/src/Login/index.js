@@ -2,19 +2,25 @@ import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
 
+
 class Login extends Component {
-  constructor(){
+  constructor(props){
     super();
     this.state = {
       username: '',
       password: '',
+      email: '',
+      userId: '',
+      experiences: [],
+      userCreated: false
     }
   }
-
+  // this function updates the input fields to update state
   handleChange = (e) => {
     this.setState({[e.target.name]: e.target.value});
   }
 
+  // this function calls the server for the login auth route
   handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -29,9 +35,16 @@ class Login extends Component {
       })
       const parsedResponse = await loginResponse.json();
       console.log("login response: ", parsedResponse)
-      if(parsedResponse.data === 'login successful'){
+      const userInfo = {
+        username: parsedResponse.data.username,
+        password: parsedResponse.data.password,
+        email: parsedResponse.data.email,
+        experiences: parsedResponse.data.experiences,
+        userId: parsedResponse.data._id,
+        userCreated: true
       }
-        this.props.history.push('/account')
+      this.props.setUserInfo(userInfo)
+      this.props.history.push("/account");
     } catch (err) {
       console.log(err);
     }
@@ -42,14 +55,14 @@ class Login extends Component {
   render(){
 
     return (
-      <div>
-        <h1>User Login</h1>
+      <div class="form">
+        <h1 class="Home">User Login</h1>
         <form onSubmit={this.handleSubmit}>
-          Username:<br />
-          <input type='text' name='username' onChange={this.handleChange}/><br />
-          Password:<br />
-          <input type='password' name='password' onChange={this.handleChange}/><br />
-          <button type='sumbit'>Login</button><br />
+          <h3>Username:</h3>
+          <input type='text' name='username' onChange={this.handleChange}/>
+          <h3>Password:</h3>
+          <input type='password' name='password' onChange={this.handleChange}/>3
+          <button type='sumbit'>Login</button>
         </form>
       </div>
       )
