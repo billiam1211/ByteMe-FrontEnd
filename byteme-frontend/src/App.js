@@ -54,7 +54,7 @@ class App extends Component {
       <main>
         <Header />
         <Switch>
-          <Route path="/home" component={ Home } />
+          <Route path="/home" render={ (props) => <Home {...props} /> } />
           <Route path="/register" render={ (props) => <Register {...props} setUserInfo={this.setUserInfo} /> } />
           <Route path="/login" render={ (props) => <Login {...props} setUserInfo={this.setUserInfo} /> } />
           <Route path="/index" component={ RestaurantList } />

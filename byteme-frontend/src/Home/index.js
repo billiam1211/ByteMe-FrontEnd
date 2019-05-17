@@ -5,21 +5,40 @@ import Login from '../Login'
 
 
 
-const Home = () => {
+class Home extends Component {
+  constructor(props){
+    super();
+  }
 
-  return (
-      <div>
-        <div class="centerForm">
-          <h1 class="Home">Welcome to Chicago Bytes!</h1><br/><br/>
-          <h3>Chicago Bytes is the best online source to 
-          find a great dining option in the city of Chicago.
-          Thousands of options are available from local 
-          hotspots, with reviews from our site members! 
-          </h3><br/><br/>
+  handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      // console.log(this.state.cuisine + ' <-- SearchTerm');
+      this.props.history.push("/Register");
+
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  render(){
+    return (
+        <div>
+          <div class="centerForm">
+            <h1 class="Home">Welcome to Chicago Bytes!</h1><br/><br/>
+            <h4>Chicago Bytes is the best online source to 
+            find a great dining option in the city of Chicago.
+            Thousands of options are available from local 
+            hotspots, with reviews from our site members! 
+            </h4><br/><br/>
+
+            <button class="homeBtn" type="submit" onClick={this.handleSubmit}>Click Here To Register</button>
+          </div>
         </div>
-      </div>
 
-    )
+      )
+  }
 }
 
 
