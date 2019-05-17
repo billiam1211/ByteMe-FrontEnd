@@ -46,7 +46,7 @@ button {
 }
 
 #headerDiv {
-	background-color: rgba(0, 0, 100, .5);
+	background-color: rgba(0, 0, 100, .65);
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;
