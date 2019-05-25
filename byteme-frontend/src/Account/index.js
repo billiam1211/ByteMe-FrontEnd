@@ -16,7 +16,7 @@ class Account extends Component {
 		console.log('this is the handle logout method');
 		e.preventDefault();
 		try {
-	        const logoutUser = await fetch('http://localhost:9000/api/v1/auth/logout', {
+	        const logoutUser = await fetch(process.env.REACT_APP_BACKEND_URL + '/api/v1/auth/logout', {
 	          method: 'DELETE',
 	          credentials: 'include'
         });
@@ -43,7 +43,7 @@ class Account extends Component {
 		const id = this.props.appState.userId
 		e.preventDefault();
 		try {
-	        const deleteUser = await fetch('http://localhost:9000/api/v1/users/' +  id, {
+	        const deleteUser = await fetch(process.env.REACT_APP_BACKEND_URL + '/api/v1/users/' +  id, {
 	          method: 'DELETE',
 	          credentials: 'include'
         });
