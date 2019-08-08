@@ -24,15 +24,15 @@ class Home extends Component {
   render(){
     return (
         <div>
-          <div class="centerForm">
-            <h1 class="Home">Welcome to Chicago Bytes!</h1><br/><br/>
+          <div className="centerForm">
+            <h1 className="Home">Welcome to Chicago Bytes!</h1><br/><br/>
             <h4>Chicago Bytes is the best online source to 
             find a great dining option in the city of Chicago.
             Thousands of options are available from local 
             hotspots, with reviews from our site members! 
             </h4><br/><br/>
 
-            <button class="homeBtn" type="submit" onClick={this.handleSubmit}>Click Here To Register</button>
+            <button className="homeBtn" type="submit" onClick={this.handleSubmit}>Click Here To Register</button>
           </div>
         </div>
 

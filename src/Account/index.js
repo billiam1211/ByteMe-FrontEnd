@@ -21,7 +21,21 @@ class Account extends Component {
 	          credentials: 'include'
         });
         console.log('user logged out');
+
+        // reset global state to blank status
+        const userInfo = {
+			loggedIn: false,
+			userId: '',
+			username: '',
+			email: '',
+			experiences: []
+        }
+
+        this.props.setUserInfo(userInfo)
+        console.log(this.props.appState);
+
       	this.props.history.push("/home");
+
 		} catch(err) {
 			console.log(err, 'error');
 		}
@@ -79,7 +93,7 @@ class Account extends Component {
 			return(
 				<div className="form">
 					<h1 className="Home">Account Info</h1><br />
-					<h3>No user logged in. <br /> Please log in to continue</h3>
+					<h3>ERROR: Please log in to view account.</h3>
 				</div>
 				)
 		}

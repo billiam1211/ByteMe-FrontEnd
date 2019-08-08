@@ -28,25 +28,24 @@ class App extends Component {
 
 
 
-// sets user info in the global state of the app
-// I'm not exactly sure how this will be called and updated
-// by other componenets in the application
+  // sets user info in the global state of the app
   setUserInfo = (userData) => {
-
     // console.log("set user info hit: ")
     // console.log(userData)
     // userData.username
 
     this.setState({
-      loggedIn: true,
+      loggedIn: userData.loggedIn,
       username: userData.username,
       userId: userData.userId,
       email: userData.email,
       experiences: userData.experiences
     })
-    console.log("App comp state: ")
-    console.log(this.state)
+
   }
+
+
+
 
 // render all components that are in the router
   render(){
@@ -67,8 +66,5 @@ class App extends Component {
     );
   }
 }
-
-// replace component={ NAME } w/ 
-// render={ (props) => < NAME {...props} newProp={this.newProp} /> }
 
 export default App;
