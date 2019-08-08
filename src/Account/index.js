@@ -60,21 +60,30 @@ class Account extends Component {
 
 
 	render(){
-		return(
-			<div class="form">
-				<h1 class="Home">Account Info </h1>
+		console.log(this.props.appState);
 
+		if(this.props.appState == true){
+			return(
+				<div class="form">
+					<h1 class="Home">Account Info </h1>
 					<h3>Username: {this.props.appState.username}</h3><br /> 
 					<h3>Email: {this.props.appState.email}</h3><br />
 					<h3>UserId: {this.props.appState.userId}</h3><br />
 					<h3>Experiences: {this.props.appState.experiences}</h3><br />
 					<button onClick={this.handleEdit}>Edit Account</button><br />
-        			<button onClick={this.handleDelete}>Delete</button><br />
-        			<button onClick={this.handleLogout}>Log Out</button><br />
+					<button onClick={this.handleDelete}>Delete</button><br />
+					<button onClick={this.handleLogout}>Log Out</button><br />
+				</div>
+				)
+		} else {
+			return(
+				<div className="form">
+					<h1 class="Home">Account Info</h1><br />
+					<h3>No user logged in. <br /> Please log in to continue</h3>
+				</div>
+				)
+		}
 
-
-			</div>
-			)
 	}
 
 

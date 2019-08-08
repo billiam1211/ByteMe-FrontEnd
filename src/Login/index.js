@@ -57,12 +57,13 @@ class Login extends Component {
     return (
       <div class="form">
         <h1 class="Home">User Login</h1>
+
         <form onSubmit={this.handleSubmit}>
           <h3>Username:</h3>
           <input type='text' name='username' onChange={this.handleChange}/>
           <h3>Password:</h3>
           <input type='password' name='password' onChange={this.handleChange}/>3
-          <button type='sumbit'>Login</button>
+          <button type='submit'>Login</button>
         </form>
       </div>
       )
