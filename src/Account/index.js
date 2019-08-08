@@ -62,10 +62,10 @@ class Account extends Component {
 	render(){
 		console.log(this.props.appState);
 
-		if(this.props.appState == true){
+		if(this.props.appState.loggedIn === true){
 			return(
-				<div class="form">
-					<h1 class="Home">Account Info </h1>
+				<div className="form">
+					<h1 className="Home">Account Info </h1>
 					<h3>Username: {this.props.appState.username}</h3><br /> 
 					<h3>Email: {this.props.appState.email}</h3><br />
 					<h3>UserId: {this.props.appState.userId}</h3><br />
@@ -78,7 +78,7 @@ class Account extends Component {
 		} else {
 			return(
 				<div className="form">
-					<h1 class="Home">Account Info</h1><br />
+					<h1 className="Home">Account Info</h1><br />
 					<h3>No user logged in. <br /> Please log in to continue</h3>
 				</div>
 				)

@@ -12,7 +12,7 @@ class Login extends Component {
       email: '',
       userId: '',
       experiences: [],
-      userCreated: false
+      msg: ''
     }
   }
   // this function updates the input fields to update state
@@ -22,9 +22,10 @@ class Login extends Component {
 
   // this function calls the server for the login auth route
   handleSubmit = async (e) => {
+    console.log('handleSubmit function hit');
     e.preventDefault();
-    try {
 
+    try {
       const loginResponse = await fetch(process.env.REACT_APP_BACKEND_URL + '/auth/login', {
         method: 'POST',
         credentials: 'include',// on every request we have to send the cookie
@@ -33,18 +34,34 @@ class Login extends Component {
           'Content-Type': 'application/json'
         }
       })
+
       const parsedResponse = await loginResponse.json();
       console.log("login response: ", parsedResponse)
-      const userInfo = {
-        username: parsedResponse.data.username,
-        password: parsedResponse.data.password,
-        email: parsedResponse.data.email,
-        experiences: parsedResponse.data.experiences,
-        userId: parsedResponse.data._id,
-        userCreated: true
+      console.log(parsedResponse.status);
+
+
+      if(parsedResponse.status == 200){
+        // if login response comes back successful, then log user in
+        const userInfo = {
+          username: parsedResponse.data.username,
+          password: parsedResponse.data.password,
+          email: parsedResponse.data.email,
+          experiences: parsedResponse.data.experiences,
+          userId: parsedResponse.data._id,
+          loggedIn: true
+        }
+
+        this.props.setUserInfo(userInfo)
+        this.props.history.push("/account");
+      } else {
+        // if login response comes back false, send error message
+        this.setState({
+          msg: 'Username or password is incorrect'
+        })
       }
-      this.props.setUserInfo(userInfo)
-      this.props.history.push("/account");
+
+
+
     } catch (err) {
       console.log(err);
     }
@@ -55,14 +72,15 @@ class Login extends Component {
   render(){
 
     return (
-      <div class="form">
-        <h1 class="Home">User Login</h1>
+      <div className="form">
+        <h1 className="Home">User Login</h1>
 
         <form onSubmit={this.handleSubmit}>
           <h3>Username:</h3>
           <input type='text' name='username' onChange={this.handleChange}/>
           <h3>Password:</h3>
           <input type='password' name='password' onChange={this.handleChange}/>3
+          <h3>{this.state.msg}</h3>
           <button type='submit'>Login</button>
         </form>
       </div>
