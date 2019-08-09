@@ -56,7 +56,7 @@ class Login extends Component {
       } else {
         // if login response comes back false, send error message
         this.setState({
-          msg: 'Username or password is incorrect'
+          msg: parsedResponse.msg
         })
       }
 

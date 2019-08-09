@@ -76,7 +76,7 @@ class Register extends Component {
       } else {
         // if there are any errors, display error message
         this.setState({
-          msg: parsedResponse.msg
+          msg: 'Unable to create account. Please check username or password and try again'
         })
       }
 
