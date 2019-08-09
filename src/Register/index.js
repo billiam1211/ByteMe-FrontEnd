@@ -12,10 +12,11 @@ class Register extends Component {
     this.state = {
       username: '',
       password: '',
+      confirmPassword: '',
       email: '',
       userId: '',
       experiences: [],
-      userCreated: false
+      msg: ''
     }
   }
 
@@ -57,18 +58,28 @@ class Register extends Component {
       // __v: 0
       // _id: "5cdda047c83f93b199a4927b"
       // use this.props.setUserInfo(....) passing in user data in order to set state for top-level App component 
-      const userInfo = {
-        username: parsedResponse.data.username,
-        password: parsedResponse.data.password,
-        email: parsedResponse.data.email,
-        experiences: parsedResponse.data.experiences,
-        userId: parsedResponse.data._id,
-        userCreated: true
+
+
+      // On successful account creation, bring user to account page
+      if(parsedResponse.status == 200) {
+        const userInfo = {
+          loggedIn: true,
+          username: parsedResponse.data.username,
+          password: parsedResponse.data.password,
+          email: parsedResponse.data.email,
+          experiences: parsedResponse.data.experiences,
+          userId: parsedResponse.data._id,
+          msg: parsedResponse.data.msg
+        }
+        this.props.setUserInfo(userInfo)
+        this.props.history.push("/account");
+      } else {
+        // if there are any errors, display error message
+        this.setState({
+          msg: parsedResponse.msg
+        })
       }
 
-      this.props.setUserInfo(userInfo)
-
-      this.props.history.push("/account");
 
     } catch (err) {
       console.log(err);
@@ -78,18 +89,27 @@ class Register extends Component {
 
 	render(){
 		return(
-			<div class="form">
-				<h1 class="Home">Create New Account:</h1>
+			<div className="form">
+				<h1 className="Home">Create New Account:</h1>
+
 					<form onSubmit={this.handleSubmit}>
-					<h3>Username: </h3><br /> 
-					<input type='text' name='username' onChange={this.handleChange}/><br />
-					<h3>Password:</h3><br />
-					<input type='password' name='password' onChange={this.handleChange}/><br />
-					<h3>Confirm password: </h3><br />
-					<input type='password' name='password' onChange={this.handleChange}/><br />
-					<h3>Email: </h3><br />
-					<input type='text' name='email' onChange={this.handleChange}/><br />
+
+					<h3>Username: </h3> 
+					<input type='text' name='username' onChange={this.handleChange}/>
+
+					<h3>Password:</h3>
+					<input type='password' name='password' onChange={this.handleChange}/>
+
+					<h3>Confirm password: </h3>
+					<input type='password' name='confirmPassword' onChange={this.handleChange}/>
+
+					<h3>Email: </h3>
+					<input type='text' name='email' onChange={this.handleChange}/>
+
+          <h3>{this.state.msg}</h3>
+
 					<button type='sumbit'>Submit</button><br />
+
 				</form>
 			</div>
 	  )
