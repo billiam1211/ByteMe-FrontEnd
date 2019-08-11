@@ -81,46 +81,61 @@ class RestaurantList extends Component {
   // renders Restaurant List component and also renders the Restaurant Show page if a user clicks
   // on the name of the restaurant
   render(){
-    // console.log(this.state.restaurantList[this.state.indexOfRestToShow]);
-    const restaurantListItems = this.state.restaurantList.map((restaurant, i) => {
-      return (
-        <div>
-          <li key={restaurant.restaurantId}>
-            <p className="fake-link" data-rest-id={i} onClick={this.showRestaurant}> Name: { restaurant.name }</p><br />
-            Address: { restaurant.address } { restaurant.zipcode } <br />
-            Cuisine: { restaurant.cuisine } <br />
-            Restaurant Id: { restaurant.restaurantId } <br /><br />
-          </li>
-        </div>
-      )
-    })
-    if(this.state.indexOfRestToShow != -1){
-      return (
-          <div class="Home">
-             <RestaurantShow restaurant={this.state.restaurantList[this.state.indexOfRestToShow]} />
+
+    if(this.props.appState.loggedIn == true){
+
+
+      // console.log(this.state.restaurantList[this.state.indexOfRestToShow]);
+      const restaurantListItems = this.state.restaurantList.map((restaurant, i) => {
+        return (
+          <div>
+            <li key={restaurant.restaurantId}>
+              <p className="fake-link" data-rest-id={i} onClick={this.showRestaurant}> Name: { restaurant.name }</p><br />
+              Address: { restaurant.address } { restaurant.zipcode } <br />
+              Cuisine: { restaurant.cuisine } <br />
+              Restaurant Id: { restaurant.restaurantId } <br /><br />
+            </li>
           </div>
-      )
-    } else {
-      return (
-          <div class="form">
-            <div>
-              <h1 class="Home">Restaurant Index</h1>
-              <form onSubmit={this.handleSubmit}>
-                <h3>Enter Cuisine Type:</h3>
-                <input type='text' name='cuisine' onChange={this.handleChange}/>
-                <button type='submit'>Submit</button>
-                <ul>
-                  { restaurantListItems }
-                </ul>
-              </form>
+        )
+      })
+      if(this.state.indexOfRestToShow != -1){
+        return (
+            <div class="Home">
+               <RestaurantShow restaurant={this.state.restaurantList[this.state.indexOfRestToShow]} />
             </div>
-          </div>
-      )
+        )
+      } else {
+        return (
+            <div class="form">
+              <div>
+                <h1 class="Home">Restaurant Search</h1>
+                <form onSubmit={this.handleSubmit}>
+                  <h3>Enter Cuisine Type:</h3>
+                  <input type='text' name='cuisine' onChange={this.handleChange}/>
+                  <button type='submit'>Submit</button>
+                  <ul>
+                    { restaurantListItems }
+                  </ul>
+                </form>
+              </div>
+            </div>
+        )
+      }
+    } else {
+      return(
+        <div className="form">
+          <h1 className="Home">Restaurant Search</h1><br />
+          <h3>Please create an account or log in to search for restaurants.</h3>
+        </div>
+        )
     }
-    // if(this.state.redirect == true){
-    //   this.props.history.push('/RestaurantShow')
-    // }
+
+
+
+
   }
+
+
 }
 
 

@@ -44,7 +44,8 @@ class App extends Component {
 
   }
 
-
+  // // Original Route for index component
+  // <Route path="/index" component={ RestaurantList } />
 
 
 // render all components that are in the router
@@ -57,7 +58,9 @@ class App extends Component {
           <Route path="/home" render={ (props) => <Home {...props} /> } />
           <Route path="/register" render={ (props) => <Register {...props} setUserInfo={this.setUserInfo} /> } />
           <Route path="/login" render={ (props) => <Login {...props} setUserInfo={this.setUserInfo} /> } />
-          <Route path="/index" component={ RestaurantList } />
+
+          <Route path="/index" render={ (props) => <RestaurantList {...props} appState={this.state} /> } />
+
           <Route path="/account" render={ (props) => <Account {...props} appState={this.state} setUserInfo={this.setUserInfo} /> } />
           <Route path="/edit" render={ (props) => <EditUser {...props} setUserInfo={this.setUserInfo} appState={this.state} /> } />
           <Route path="/restaurantShow" component={ RestaurantShow } />
