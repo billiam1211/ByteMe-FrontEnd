@@ -9,6 +9,7 @@ const Header = () => {
   return (
     <header>
     	<div id="headerDiv">
+            <div className="Home">ChicagoBytes.com</div>
             <Link to="/home"> <h5 className="headerLinks">Home</h5> </Link> <br />
 	        <Link to="/register"> <h5 className="headerLinks">Register</h5> </Link> <br />
 	        <Link to="/index"><h5 className="headerLinks">Restaurants</h5></Link> <br />

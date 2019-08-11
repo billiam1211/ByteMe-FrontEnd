@@ -25,7 +25,7 @@ class Home extends Component {
     return (
         <div>
           <div className="centerForm">
-            <h1 className="Home">Welcome to Chicago Bytes!</h1><br/><br/>
+            <h1 className="Home">ChicagoBytes.com</h1><br/><br/>
             <h4>Chicago Bytes is the best online source to 
             find a great dining option in the city of Chicago.
             Thousands of options are available from local 
