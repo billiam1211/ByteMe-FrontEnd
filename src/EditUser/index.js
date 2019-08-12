@@ -71,14 +71,14 @@ class EditUser extends Component {
 			<div class="form">
 				<h1 class="Home">Edit Account:</h1>
 					<form onSubmit={this.updateUserAccount}>
-					<h3>Username: </h3><br /> 
-					<input type='text' name='username' onChange={this.handleChange}/><br />
-					<h3>Password:</h3><br />
-					<input type='password' name='password' onChange={this.handleChange}/><br />
-					<h3>Confirm password: </h3><br />
-					<input type='password' name='password' onChange={this.handleChange}/><br />
-					<h3>Email: </h3><br />
-					<input type='text' name='email' onChange={this.handleChange}/><br />
+					<h3>Username: </h3> 
+					<input type='text' name='username' onChange={this.handleChange}/>
+					<h3>Password:</h3>
+					<input type='password' name='password' onChange={this.handleChange}/>
+					<h3>Confirm password: </h3>
+					<input type='password' name='password' onChange={this.handleChange}/>
+					<h3>Email: </h3>
+					<input type='text' name='email' onChange={this.handleChange}/><br /> <br />
 					<button type='sumbit'>Submit Changes</button><br />
 				</form>
 			</div>

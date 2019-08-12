@@ -80,7 +80,7 @@ class Login extends Component {
           <input type='text' name='username' onChange={this.handleChange}/>
           <h3>Password:</h3>
           <input type='password' name='password' onChange={this.handleChange}/>3
-          <h3>{this.state.msg}</h3>
+          <h5 className="Home">{this.state.msg}</h5>
           <button type='submit'>Login</button>
         </form>
       </div>

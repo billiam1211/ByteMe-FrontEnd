@@ -106,7 +106,7 @@ class Register extends Component {
 					<h3>Email: </h3>
 					<input type='text' name='email' onChange={this.handleChange}/>
 
-          <h3>{this.state.msg}</h3>
+          <h5 className="Home">{this.state.msg}</h5>
 
 					<button type='sumbit'>Submit</button><br />
 

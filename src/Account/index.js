@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
 
 
+
 // Component for user accounts and will show user information
 // Component will also contain 2 functions that will handle edit account and delete account
 class Account extends Component {
@@ -79,7 +80,7 @@ class Account extends Component {
 		if(this.props.appState.loggedIn === true){
 			return(
 				<div className="form">
-					<h1 className="Home">Account Info </h1>
+					<h1 className="Home">My Account</h1>
 					<h3>Username: {this.props.appState.username}</h3><br /> 
 					<h3>Email: {this.props.appState.email}</h3><br />
 					<h3>UserId: {this.props.appState.userId}</h3><br />
@@ -92,7 +93,7 @@ class Account extends Component {
 		} else {
 			return(
 				<div className="form">
-					<h1 className="Home">Account Info</h1><br />
+					<h1 className="Home">My Account</h1><br />
 					<h3>ERROR: Please log in to view account.</h3>
 				</div>
 				)
