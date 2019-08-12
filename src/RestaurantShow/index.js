@@ -8,10 +8,9 @@ function RestaurantShow (props) {
 	console.log('Here is props ---> ', props);
 
     return (
-
     	<div class="form">
 	      <div>
-	        <h1 class="Home">Restaurant Show</h1>
+	        <h1 class="Home">Restaurant Info</h1>
         	<h3>{ props.restaurant.name }</h3>
         	<ul id="restaurantShow">
 	    		<li>
@@ -27,6 +26,7 @@ function RestaurantShow (props) {
 	    			<a href={props.restaurant.url} target="_blank" rel="noopener noreferrer">{props.restaurant.url}</a>
 				</li>
         	</ul>
+        	<button onClick={props.redirect}>Write Review</button>
 	      </div>
       	</div>
 

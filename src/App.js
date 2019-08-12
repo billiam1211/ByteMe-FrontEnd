@@ -12,6 +12,7 @@ import Account from './Account'
 import RestaurantShow from './RestaurantShow'
 import Button from 'react-bootstrap/Button';
 import EditUser from './EditUser';
+import CreateReview from './Create Review';
 
 
 class App extends Component {
@@ -22,7 +23,8 @@ class App extends Component {
       userId: '',
       username: '',
       email: '',
-      experiences: []
+      experiences: [],
+      restaurantId: ''
     })
   }
 
@@ -39,7 +41,8 @@ class App extends Component {
       username: userData.username,
       userId: userData.userId,
       email: userData.email,
-      experiences: userData.experiences
+      experiences: userData.experiences,
+      restaurantId: userData.restaurantId
     })
 
   }
@@ -58,10 +61,12 @@ class App extends Component {
           <Route path="/home" render={ (props) => <Home {...props} /> } />
           <Route path="/register" render={ (props) => <Register {...props} setUserInfo={this.setUserInfo} /> } />
           <Route path="/login" render={ (props) => <Login {...props} setUserInfo={this.setUserInfo} /> } />
-          <Route path="/index" render={ (props) => <RestaurantList {...props} appState={this.state} /> } />
+          <Route path="/index" render={ (props) => <RestaurantList {...props} appState={this.state} setUserInfo={this.setUserInfo} /> } />
           <Route path="/account" render={ (props) => <Account {...props} appState={this.state} setUserInfo={this.setUserInfo} /> } />
           <Route path="/edit" render={ (props) => <EditUser {...props} setUserInfo={this.setUserInfo} appState={this.state} /> } />
           <Route path="/restaurantShow" component={ RestaurantShow } />
+          <Route path="/CreateReview" render={ (props) => <CreateReview {...props} appState={this.state} setUserInfo={this.setUserInfo} /> } />
+
         </Switch>
       </main>
     );

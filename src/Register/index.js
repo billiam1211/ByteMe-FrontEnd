@@ -90,7 +90,7 @@ class Register extends Component {
 	render(){
 		return(
 			<div className="form">
-				<h1 className="Home">Create New Account:</h1>
+				<h1 className="Home">Create New Account</h1>
 
 					<form onSubmit={this.handleSubmit}>
 

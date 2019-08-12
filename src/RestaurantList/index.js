@@ -5,15 +5,16 @@ import { Link } from 'react-router-dom'
 import RestaurantShow from '../RestaurantShow';
 
 
+
 // Component for rendering a list of restaurants based on the user search term
 class RestaurantList extends Component {
-  constructor(){
+  constructor(props){
     super();
     this.state = {
       cuisine: '',
       restaurantList: [],
       indexOfRestToShow: -1,
-      redirect: false
+      redirect: false,
     }
   }
 
@@ -47,7 +48,7 @@ class RestaurantList extends Component {
   }
 
 
-// calls API to get a list of restaurants based on the searchTerm stored in state
+  // calls API to get a list of restaurants based on the searchTerm stored in state
   getRestaurants = async () => {
     try {
       // console.log("cuisine to search for: ", this.state.cuisine)
@@ -78,9 +79,32 @@ class RestaurantList extends Component {
   }
 
 
+  // this function will update the global state with the restaurant ID
+  // then redirect the user to the createReview component 
+  redirectToReview = async (e) => {
+    const restaurantId = this.state.restaurantList[this.state.indexOfRestToShow].restaurantId
+    const userData = {
+      loggedIn: this.props.appState.loggedIn,
+      username: this.props.appState.username,
+      userId: this.props.appState.userId,
+      email: this.props.appState.email,
+      experiences: this.props.appState.experiences,
+      restaurantId: restaurantId
+    }
+    this.props.setUserInfo(userData)
+
+
+    this.props.history.push("/createReview");
+
+  }
+
+
+
+
   // renders Restaurant List component and also renders the Restaurant Show page if a user clicks
   // on the name of the restaurant
   render(){
+    console.log(this.props);
 
     if(this.props.appState.loggedIn == true){
 
@@ -99,9 +123,10 @@ class RestaurantList extends Component {
         )
       })
       if(this.state.indexOfRestToShow != -1){
+
         return (
             <div class="Home">
-               <RestaurantShow restaurant={this.state.restaurantList[this.state.indexOfRestToShow]} />
+               <RestaurantShow redirect={this.redirectToReview} restaurant={this.state.restaurantList[this.state.indexOfRestToShow]} />
             </div>
         )
       } else {
