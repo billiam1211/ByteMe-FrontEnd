@@ -10,28 +10,24 @@ body {
 
 ul {
   font-family: 'Poiret One', cursive;
-  text-transform: uppercase;
   color: rgba(255, 255, 255, .8);
   font-weight: 600;
 }
 
 h3, h4 {
   font-family: 'Poiret One', cursive;
-  text-transform: uppercase;
   color: rgba(255, 255, 255, .8);
   font-weight: 600;
 }
 
 h1 {
   font-family: 'Poiret One', cursive;
-  text-transform: uppercase;
   color: rgba(255, 255, 255, .8);
   font-weight: 600;
 }
 
 h6 {
   font-family: 'Poiret One', cursive;
-  text-transform: uppercase;
   color: rgba(255, 255, 255, .8);
   font-weight: 600;
 }
@@ -108,7 +104,7 @@ button {
 	padding: 20px;
 	border-radius: 15px;
 	font-family: 'Poiret One', cursive;
-	font-size: 14pt;
+	font-size: 12pt;
 	min-width: 600px;
 	margin: 25px;
 	margin-left: auto;
@@ -154,9 +150,6 @@ button {
 	width: auto;
 	overflow: hidden;
 }
-
-
-
 
 @import url('https://fonts.googleapis.com/css?family=Poiret+One');
 @import url('https://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister');

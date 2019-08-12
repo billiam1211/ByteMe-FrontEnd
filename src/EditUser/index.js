@@ -10,7 +10,8 @@ class EditUser extends Component {
 		this.state = {
 		  username: '',
 		  password: '',
-		  email: '',
+      confirmPassword: '',
+		  email: ''
 		}
 	}
 
@@ -34,6 +35,7 @@ class EditUser extends Component {
         	username: this.state.username,
         	email: this.state.email,
         	password: this.state.password,
+          confirmPassword: this.state.confirmPassword,
         	experiences: [this.props.appState.experiences]
         }),
         headers: {
@@ -52,9 +54,10 @@ class EditUser extends Component {
       const userInfo = {
         username: parsedResponse.data.username,
         password: parsedResponse.data.password,
+        confirmPassword: parsedResponse.data.confirmPassword,
         email: parsedResponse.data.email,
         experiences: parsedResponse.data.experiences,
-        userId: parsedResponse.data._id,
+        userId: parsedResponse.data._id
       }
 
       this.props.setUserInfo(userInfo)
@@ -76,7 +79,7 @@ class EditUser extends Component {
 					<h3>Password:</h3>
 					<input type='password' name='password' onChange={this.handleChange}/>
 					<h3>Confirm password: </h3>
-					<input type='password' name='password' onChange={this.handleChange}/>
+					<input type='password' name='confirmPassword' onChange={this.handleChange}/>
 					<h3>Email: </h3>
 					<input type='text' name='email' onChange={this.handleChange}/><br /> <br />
 					<button type='sumbit'>Submit Changes</button><br />
