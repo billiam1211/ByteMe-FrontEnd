@@ -92,10 +92,7 @@ class RestaurantList extends Component {
       restaurantId: restaurantId
     }
     this.props.setUserInfo(userData)
-
-
     this.props.history.push("/createReview");
-
   }
 
 

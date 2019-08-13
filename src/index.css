@@ -41,38 +41,8 @@ button {
 
 }
 
-#headerDiv {
-	background-color: rgba(0, 0, 100, .8);
-	display: flex;
-	flex-direction: row;
-	justify-content: space-around;
-	padding: 10px;
-}
-
 .headerLinks {
 	color: white;
-}
-
-@media only screen and (max-width: 600px){
-	#headerDiv {
-		flex-direction: column;
-	}
-	.headerLinks {
-		text-align: center;
-	}
-	#mobileHeader {
-		text-align: center;
-		padding-bottom: 5px;
-		font-size: 25pt;
-	}
-	.mobileLinks {
-		padding-top: 5px;
-		background-color: rgba(255, 255, 255, 0.3);
-	}
-}
-
-#restaurantShow {
-	list-style-type: none;
 }
 
 .homeBtn {
@@ -111,6 +81,52 @@ button {
 	margin-right: auto;
 }
 
+.centerForm {
+	text-align: center;
+	background-color: rgba(0, 0, 0, .8);
+	width: 50%;
+	padding: 20px;
+	border-radius: 15px;
+	font-family: 'Poiret One', cursive;
+	font-size: 14pt;
+	min-width: 600px;
+	margin: 25px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.reviewBox {
+	width: 400px;
+	height: 250px;
+}
+
+.ratingButton {
+	height: 50px;
+	width: 50px;
+    color: black;
+    background: rgba(255, 0, 0, 0.7);
+    border-radius: 10px;
+    margin: 10px;
+    border: solid white thin;
+}
+
+.star {
+	height: 30px;
+	width: auto;
+}
+
+.ratingButton:hover { 
+  background-color: blue;
+}
+
+#loginDiv {
+	background-color: green;
+	height: 100px;
+	width: auto;
+	overflow: hidden;
+}
+
+
 #login {
 	display: flex;
 	justify-content: center;
@@ -130,26 +146,43 @@ button {
 	width: 250px;
 }
 
-.centerForm {
-	text-align: center;
-	background-color: rgba(0, 0, 0, .8);
-	width: 50%;
-	padding: 20px;
-	border-radius: 15px;
-	font-family: 'Poiret One', cursive;
-	font-size: 14pt;
-	min-width: 600px;
-	margin: 25px;
-	margin-left: auto;
-	margin-right: auto;
+#restaurantShow {
+	list-style-type: none;
 }
 
-#loginDiv {
-	background-color: green;
-	height: 100px;
-	width: auto;
-	overflow: hidden;
+#headerDiv {
+	background-color: rgba(0, 0, 100, .8);
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	padding: 10px;
 }
+
+@media only screen and (max-width: 600px){
+	#headerDiv {
+		flex-direction: column;
+	}
+	.headerLinks {
+		text-align: center;
+	}
+	#mobileHeader {
+		text-align: center;
+		padding-bottom: 5px;
+		font-size: 25pt;
+	}
+	.mobileLinks {
+		padding-top: 5px;
+		background-color: rgba(255, 255, 255, 0.3);
+		border: solid white thin;
+		border-radius: 10%;
+	}
+	.mobileLinks:hover{
+		background-color: rgba(0, 0, 250, 0.2);
+	}
+}
+
+
+
 
 @import url('https://fonts.googleapis.com/css?family=Poiret+One');
 @import url('https://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister');

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+
+
 import { Route, Switch } from 'react-router-dom';
 import { Link } from 'react-router-dom'
 import Home from './Home'
@@ -13,6 +15,9 @@ import RestaurantShow from './RestaurantShow'
 import Button from 'react-bootstrap/Button';
 import EditUser from './EditUser';
 import CreateReview from './Create Review';
+
+
+
 
 
 class App extends Component {
@@ -65,7 +70,7 @@ class App extends Component {
           <Route path="/account" render={ (props) => <Account {...props} appState={this.state} setUserInfo={this.setUserInfo} /> } />
           <Route path="/edit" render={ (props) => <EditUser {...props} setUserInfo={this.setUserInfo} appState={this.state} /> } />
           <Route path="/restaurantShow" component={ RestaurantShow } />
-          <Route path="/CreateReview" render={ (props) => <CreateReview {...props} appState={this.state} setUserInfo={this.setUserInfo} /> } />
+          <Route path="/createReview" render={ (props) => <CreateReview {...props} setUserInfo={this.setUserInfo} appState={this.state} /> } />
 
         </Switch>
       </main>
