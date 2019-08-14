@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
-import { Redirect } from 'react-router-dom';
+
 
 
 
@@ -12,7 +11,8 @@ class CreateReview extends Component {
       title: '',
       review: '',
       rating: null,
-      restaurantId: props.appState.restaurantId
+      restaurantId: props.appState.restaurantId,
+      restaurantName: props.appState.restaurantName
     }
   }
 
@@ -40,6 +40,8 @@ class CreateReview extends Component {
       console.log(reviewResponse);
       const parsedResponse = await reviewResponse.json();
       console.log("Review response: ", parsedResponse);
+      this.props.history.push("/index");
+
     } catch (err) {
       console.log(err);
     }
@@ -87,13 +89,14 @@ class CreateReview extends Component {
 					<input type='text' name='title' onChange={this.handleChange}/>
 
           <h3>Rating: {this.state.rating} </h3> 
-          <button type="button" onClick={this.handleClick1} className="ratingButton"><img className="star" src="http://www.pngpix.com/wp-content/uploads/2016/10/PNGPIX-COM-Gold-Star-PNG-Transparent-Image-500x500.png" /></button>
-          <button type="button" onClick={this.handleClick2} className="ratingButton"><img className="star" src="http://www.pngpix.com/wp-content/uploads/2016/10/PNGPIX-COM-Gold-Star-PNG-Transparent-Image-500x500.png" /></button>
-          <button type="button" onClick={this.handleClick3} className="ratingButton"><img className="star" src="http://www.pngpix.com/wp-content/uploads/2016/10/PNGPIX-COM-Gold-Star-PNG-Transparent-Image-500x500.png" /></button>
-          <button type="button" onClick={this.handleClick4} className="ratingButton"><img className="star" src="http://www.pngpix.com/wp-content/uploads/2016/10/PNGPIX-COM-Gold-Star-PNG-Transparent-Image-500x500.png" /></button>
-          <button type="button" onClick={this.handleClick5} className="ratingButton"><img className="star" src="http://www.pngpix.com/wp-content/uploads/2016/10/PNGPIX-COM-Gold-Star-PNG-Transparent-Image-500x500.png" /></button>
+          <button type="button" onClick={this.handleClick1} className="ratingButton"><img className="star" alt="star" src="http://www.pngpix.com/wp-content/uploads/2016/10/PNGPIX-COM-Gold-Star-PNG-Transparent-Image-500x500.png" /></button>
+          <button type="button" onClick={this.handleClick2} className="ratingButton"><img className="star" alt="star" src="http://www.pngpix.com/wp-content/uploads/2016/10/PNGPIX-COM-Gold-Star-PNG-Transparent-Image-500x500.png" /></button>
+          <button type="button" onClick={this.handleClick3} className="ratingButton"><img className="star" alt="star" src="http://www.pngpix.com/wp-content/uploads/2016/10/PNGPIX-COM-Gold-Star-PNG-Transparent-Image-500x500.png" /></button>
+          <button type="button" onClick={this.handleClick4} className="ratingButton"><img className="star" alt="star" src="http://www.pngpix.com/wp-content/uploads/2016/10/PNGPIX-COM-Gold-Star-PNG-Transparent-Image-500x500.png" /></button>
+          <button type="button" onClick={this.handleClick5} className="ratingButton"><img className="star" alt="star" src="http://www.pngpix.com/wp-content/uploads/2016/10/PNGPIX-COM-Gold-Star-PNG-Transparent-Image-500x500.png" /></button>
 
 					<h3>Review: </h3>
+
 					<textarea className="reviewBox" type='text' name='review' onChange={this.handleChange}/>
 
           <h5 className="Home">{this.state.msg}</h5>

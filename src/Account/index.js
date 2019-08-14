@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
-import { Redirect } from 'react-router-dom';
 
 
 
@@ -9,7 +7,52 @@ import { Redirect } from 'react-router-dom';
 class Account extends Component {
 	constructor(props){
 		super();
+		this.state = ({
+			experiences: []
+		})
+
 	}
+
+	// UPON PAGE RENDER AUTOMATICALLLY POPULATES THE USERS ACTIVE REVIEWS
+	componentDidMount(){
+		this.getUserReviews(this.props.appState.userId)
+	}
+
+	// GETS THE REVIEWS FOR THE LOGGED IN USER
+	getUserReviews = async (id) => {
+		const loggedUserId = id
+		try{
+
+	const reviewResponse = await fetch(process.env.REACT_APP_BACKEND_URL + `/api/v1/users/${loggedUserId}`, {
+	    	method: 'GET', 
+	    	credentials: 'include',
+	    	headers: {
+	        	'Content-Type': 'application/json'
+	    	}
+		})
+		const parsedResponse = await reviewResponse.json();
+		console.log('reviews from db ===> ', parsedResponse);
+
+		const userData = {
+			loggedIn: this.props.appState.loggedIn,
+			username: this.props.appState.username,
+			userId: this.props.appState.userId,
+			email: this.props.appState.email,
+			experiences: parsedResponse.data.experiences,
+			restaurantId: this.props.appState.restaurantId,
+			restaurantName: this.props.appState.restaurantName
+		}
+
+		this.props.setUserInfo(userData)
+
+
+
+		}catch(err){
+		  console.log(err);
+			}
+	}
+
+
 
 
 	// this method will log out the user and destroy the session
@@ -77,14 +120,40 @@ class Account extends Component {
 	render(){
 		console.log(this.props.appState);
 
-		if(this.props.appState.loggedIn === true){
+		if(this.props.appState.loggedIn === true && this.props.appState.experiences !== undefined){
+			const userExperiences = this.props.appState.experiences.map((experience, i) => {
+				console.log(experience);
+			return (
+				<div>
+					<li className="reviewContainer" key={i}>
+						<div className="reviewChunk">
+							{ experience.restaurantname }  <br />
+							RATING: { experience.rating } stars<br />
+							{ experience.username }<br />
+						</div>
+						<div className="reviewChunk">
+							{ experience.title }  <br />
+						</div>
+						<div className="reviewChunk">
+							{ experience.review } <br />
+						</div>
+					</li>
+				</div>
+			)
+			})
+
+
+
 			return(
 				<div className="form">
 					<h1 className="Home">My Account</h1>
 					<h3>Username: {this.props.appState.username}</h3><br /> 
 					<h3>Email: {this.props.appState.email}</h3><br />
 					<h3>UserId: {this.props.appState.userId}</h3><br />
-					<h3>Experiences: {this.props.appState.experiences}</h3><br />
+					<h1 className="Home">My Reviews</h1>
+					<ul className="reviews">
+							{ userExperiences }
+					</ul>
 					<button onClick={this.handleEdit}>Edit Account</button><br />
 					<button onClick={this.handleDelete}>Delete</button><br />
 					<button onClick={this.handleLogout}>Log Out</button><br />

@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
-
 import { Route, Switch } from 'react-router-dom';
-import { Link } from 'react-router-dom'
 import Home from './Home'
 import Login from './Login';
 import Register from './Register'
@@ -29,7 +26,8 @@ class App extends Component {
       username: '',
       email: '',
       experiences: [],
-      restaurantId: ''
+      restaurantId: '',
+      restaurantName: ''
     })
   }
 
@@ -47,7 +45,8 @@ class App extends Component {
       userId: userData.userId,
       email: userData.email,
       experiences: userData.experiences,
-      restaurantId: userData.restaurantId
+      restaurantId: userData.restaurantId,
+      restaurantName: userData.restaurantName
     })
 
   }

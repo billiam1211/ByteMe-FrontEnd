@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
-import { Redirect } from 'react-router-dom';
+
 
 
 class Login extends Component {
@@ -40,7 +39,7 @@ class Login extends Component {
       console.log(parsedResponse.status);
 
 
-      if(parsedResponse.status == 200){
+      if(parsedResponse.status === 200){
         // if login response comes back successful, then log user in
         const userInfo = {
           username: parsedResponse.data.username,

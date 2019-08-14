@@ -95,6 +95,36 @@ button {
 	margin-right: auto;
 }
 
+.reviews {
+	list-style: none;
+	margin-right: 35px;
+}
+
+.reviewContainer {
+	text-align: left;
+/*	background-color: rgba(0, 0, 100, 0.8);*/
+	color: black;
+	padding: 5px;
+	font-family: 'Josefin Sans', sans-serif;
+	margin: 25px;
+	list-style: none;
+}
+
+.reviewsHeader {
+	color: yellow;
+	font-family: 'Love Ya Like A Sister', cursive;	
+	margin: 50px auto 0 auto;
+	text-align: center;
+}
+
+.reviewChunk {
+	background-color: rgba(255, 255, 255, 0.85);
+	margin: 10px;	
+	padding: 5px;
+  	box-shadow: 10px 10px #000096;
+}
+
+
 .reviewBox {
 	width: 400px;
 	height: 250px;
@@ -161,6 +191,8 @@ button {
 @media only screen and (max-width: 600px){
 	#headerDiv {
 		flex-direction: column;
+		justify-content: space-between;
+		width: 600px;
 	}
 	.headerLinks {
 		text-align: center;
@@ -171,10 +203,11 @@ button {
 		font-size: 25pt;
 	}
 	.mobileLinks {
-		padding-top: 5px;
-		background-color: rgba(255, 255, 255, 0.3);
+		height: 50px;
+		padding-top: 10px;
+		background-color: rgba(75, 75, 255, 0.5);
 		border: solid white thin;
-		border-radius: 10%;
+		border-radius: 5%;
 	}
 	.mobileLinks:hover{
 		background-color: rgba(0, 0, 250, 0.2);
@@ -186,3 +219,4 @@ button {
 
 @import url('https://fonts.googleapis.com/css?family=Poiret+One');
 @import url('https://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister');
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans')

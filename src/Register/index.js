@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
-import { Redirect } from 'react-router-dom';
-import Account from '../Account'
 
 
 // this is the class for registering a new user 
@@ -15,7 +12,6 @@ class Register extends Component {
       confirmPassword: '',
       email: '',
       userId: '',
-      experiences: [],
       msg: ''
     }
   }
@@ -61,13 +57,12 @@ class Register extends Component {
 
 
       // On successful account creation, bring user to account page
-      if(parsedResponse.status == 200) {
+      if(parsedResponse.status === 200) {
         const userInfo = {
           loggedIn: true,
           username: parsedResponse.data.username,
           password: parsedResponse.data.password,
           email: parsedResponse.data.email,
-          experiences: parsedResponse.data.experiences,
           userId: parsedResponse.data._id,
           msg: parsedResponse.data.msg
         }

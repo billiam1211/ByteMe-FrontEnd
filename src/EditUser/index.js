@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
-import { Redirect } from 'react-router-dom';
-import Account from '../Account'
 
 
 class EditUser extends Component {
@@ -54,10 +51,11 @@ class EditUser extends Component {
       const userInfo = {
         username: parsedResponse.data.username,
         password: parsedResponse.data.password,
-        confirmPassword: parsedResponse.data.confirmPassword,
         email: parsedResponse.data.email,
-        experiences: parsedResponse.data.experiences,
-        userId: parsedResponse.data._id
+        userId: parsedResponse.data._id,
+        experiences: this.props.appState.experiences,
+        restaurantId: this.props.appState.restaurantId,
+        restaurantName: this.props.appState.restaurantName
       }
 
       this.props.setUserInfo(userInfo)

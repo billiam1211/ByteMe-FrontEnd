@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
-import { Redirect } from 'react-router-dom';
-import { Link } from 'react-router-dom'
 import RestaurantShow from '../RestaurantShow';
 
 
@@ -15,6 +12,8 @@ class RestaurantList extends Component {
       restaurantList: [],
       indexOfRestToShow: -1,
       redirect: false,
+      triggerReviews: false,
+      reviews: []
     }
   }
 
@@ -45,6 +44,11 @@ class RestaurantList extends Component {
       indexOfRestToShow: e.currentTarget.dataset.restId,
     })
     // console.log(this.state.indexOfRestToShow + 'index of restaurant to show');
+
+    // invoke function to make API call to search for reviews for selected restaurant
+    // restaurant ID => this.state.restaurantList[this.state.indexOfRestToShow].restaurantId
+    this.getRestaurantReviews(this.state.restaurantList[this.state.indexOfRestToShow].restaurantId)
+
   }
 
 
@@ -83,13 +87,16 @@ class RestaurantList extends Component {
   // then redirect the user to the createReview component 
   redirectToReview = async (e) => {
     const restaurantId = this.state.restaurantList[this.state.indexOfRestToShow].restaurantId
+    const restaurantName = this.state.restaurantList[this.state.indexOfRestToShow].name
+
     const userData = {
       loggedIn: this.props.appState.loggedIn,
       username: this.props.appState.username,
       userId: this.props.appState.userId,
       email: this.props.appState.email,
       experiences: this.props.appState.experiences,
-      restaurantId: restaurantId
+      restaurantId: restaurantId,
+      restaurantName: restaurantName
     }
     this.props.setUserInfo(userData)
     this.props.history.push("/createReview");
@@ -98,12 +105,40 @@ class RestaurantList extends Component {
 
 
 
+  getRestaurantReviews = async (restId) => {
+    try{
+      const response = await fetch(process.env.REACT_APP_BACKEND_URL + `/api/v1/experiences/${restId}`, {
+        method: 'GET',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      const parsedResponse = await response.json()
+      console.log(parsedResponse.data);
+
+      this.setState({
+        reviews: parsedResponse.data
+      })
+
+      return
+
+    } catch(err) {
+      console.log('There was an error below');
+      console.log(err);
+    }
+
+  }
+
+
+
+
   // renders Restaurant List component and also renders the Restaurant Show page if a user clicks
   // on the name of the restaurant
   render(){
-    console.log(this.props);
+    console.log(this.state);
 
-    if(this.props.appState.loggedIn == true){
+    if(this.props.appState.loggedIn === true){
 
 
       // console.log(this.state.restaurantList[this.state.indexOfRestToShow]);
@@ -119,11 +154,11 @@ class RestaurantList extends Component {
           </div>
         )
       })
-      if(this.state.indexOfRestToShow != -1){
+      if(this.state.indexOfRestToShow !== -1){
 
         return (
             <div class="Home">
-               <RestaurantShow redirect={this.redirectToReview} restaurant={this.state.restaurantList[this.state.indexOfRestToShow]} />
+               <RestaurantShow reviews={this.state.reviews} redirect={this.redirectToReview} restaurant={this.state.restaurantList[this.state.indexOfRestToShow]} />
             </div>
         )
       } else {
