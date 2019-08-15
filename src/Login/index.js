@@ -31,7 +31,7 @@ class Login extends Component {
         body: JSON.stringify(this.state),
         headers: {
           'Content-Type': 'application/json'
-        }
+        },
       })
 
       const parsedResponse = await loginResponse.json();
