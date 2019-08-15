@@ -31,7 +31,7 @@ class CreateReview extends Component {
 
       const reviewResponse = await fetch(process.env.REACT_APP_BACKEND_URL + '/api/v1/experiences', {
         method: 'POST',
-        credentials: 'include',// on every request we have to send the cookie
+        credentials: 'include', // on every request we have to send the cookie
         body: JSON.stringify(this.state),
         headers: {
           'Content-Type': 'application/json'
