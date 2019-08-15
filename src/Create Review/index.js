@@ -86,7 +86,7 @@ class CreateReview extends Component {
 					<form onSubmit={this.handleSubmit}>
 
 					<h3>Review Title: </h3> 
-					<input type='text' name='title' onChange={this.handleChange}/>
+					<input type='text' name='title' placeholder='review title' onChange={this.handleChange}/>
 
           <h3>Rating: {this.state.rating} </h3> 
           <button type="button" onClick={this.handleClick1} className="ratingButton"><img className="star" alt="star" src="http://www.pngpix.com/wp-content/uploads/2016/10/PNGPIX-COM-Gold-Star-PNG-Transparent-Image-500x500.png" /></button>
@@ -97,7 +97,7 @@ class CreateReview extends Component {
 
 					<h3>Review: </h3>
 
-					<textarea className="reviewBox" type='text' name='review' onChange={this.handleChange}/>
+					<textarea className="reviewBox" type='text' name='review' placeholder='tell us about your experience...' onChange={this.handleChange}/>
 
           <h5 className="Home">{this.state.msg}</h5>
 

@@ -90,16 +90,16 @@ class Register extends Component {
 					<form onSubmit={this.handleSubmit}>
 
 					<h3>Username: </h3> 
-					<input type='text' name='username' onChange={this.handleChange}/>
+					<input type='text' name='username' placeholder='username' onChange={this.handleChange}/>
 
 					<h3>Password:</h3>
-					<input type='password' name='password' onChange={this.handleChange}/>
+					<input type='password' name='password' placeholder='password' onChange={this.handleChange}/>
 
 					<h3>Confirm password: </h3>
-					<input type='password' name='confirmPassword' onChange={this.handleChange}/>
+					<input type='password' name='confirmPassword' placeholder='confirm password' onChange={this.handleChange}/>
 
 					<h3>Email: </h3>
-					<input type='text' name='email' onChange={this.handleChange}/>
+					<input type='text' name='email' placeholder='email' onChange={this.handleChange}/>
 
           <h5 className="Home">{this.state.msg}</h5>
 
